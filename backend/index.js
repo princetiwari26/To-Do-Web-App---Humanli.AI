@@ -6,6 +6,10 @@ import rateLimit from "express-rate-limit";
 
 import { connectDB } from "./config/db.js";
 
+import authRoutes from "./routes/auth.routes.js";
+import boardRoutes from "./routes/board.routes.js";
+import todoRoutes from "./routes/todo.routes.js";
+
 dotenv.config();
 
 const app = express();
@@ -31,6 +35,10 @@ app.use(
 );
 
 connectDB();
+
+app.use("/api/auth", authRoutes);
+app.use("/api/boards", boardRoutes);
+app.use("/api/todos", todoRoutes);
 
 const PORT = process.env.PORT || 8000;
 
